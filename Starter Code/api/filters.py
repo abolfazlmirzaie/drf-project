@@ -1,0 +1,10 @@
+import django_filters
+from api.models import Product
+
+
+class ProductFilter(django_filters.filterset):
+    class Meta:
+        model = Product
+        fields = {'name' : ['iexact', 'icontains'],
+                  'price': ['exact', 'gt', 'lt', 'range'],
+        }

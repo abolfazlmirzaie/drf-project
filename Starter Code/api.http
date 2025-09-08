@@ -1,1 +1,15 @@
-GET http://localhost:8000/re
+
+GET http://localhost:8000/orders HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3Mjc5NjA0LCJpYXQiOjE3NTcyNzkzMDQsImp0aSI6ImQ3NzU3YzZmODljNDRkY2I4OTZhYWE4OTdhOTc5OTg5IiwidXNlcl9pZCI6IjIifQ.R5Vs-_D97EsCo93nbpHekb6mph62QD4_MaoKQ1iBxtI
+###
+
+
+POST http://localhost:8000/api/token/ HTTP/1.1
+content-type: application/json
+
+{
+  "username": "a",
+  "password": "123",
+  "access": "",
+  "refresh": ""
+}

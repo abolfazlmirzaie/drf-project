@@ -32,7 +32,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'silk',
     'drf_spectacular',
-    'django_filters'
+    'django_filters',
+    'rest_framework_simplejwt',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -46,7 +48,7 @@ MIDDLEWARE = [
     'silk.middleware.SilkyMiddleware',
 ]
 
-ROOT_URLCONF = 'drf_course.urls'
+ROOT_URLCONF = 'main.urls'
 
 TEMPLATES = [
     {
@@ -64,7 +66,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'drf_course.wsgi.application'
+WSGI_APPLICATION = 'main.wsgi.application'
 
 
 # Database
@@ -130,17 +132,42 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+        ),
     'PAGE_SIZE': 5,
+    "DEFAULT_THROTTLE_CLASSES" : [
+        "rest_framework.throttling.AnonRateThrottle",
+        "api.throttles.BurstRateThrottle",
+        "api.throttles.SustainedRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {
+        "anon": "2/minute",
+        "burst": "2/minute",
+        "sustained": "15/hour",
+    }
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Drf Course',
-    'DESCRIPTION': 'Drf Course',
+    'TITLE': 'Drf',
+    'DESCRIPTION': 'Drf',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
 }
 
 
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
 
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+DEFAULT_FROM_EMAIL = "no-reply@example.com"
 

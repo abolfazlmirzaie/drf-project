@@ -59,7 +59,6 @@ class OrderItem(models.Model):
         return f'{self.quantity} x {self.product.name} in Order {self.order.order_id}'
 
 
-print('')
 
 
 

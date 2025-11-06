@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
     <data-source source="LOCAL" name="db" uuid="af9ffe65-bb7b-4142-83d0-7cbeca0b5834">
-      <driver-ref>sqlite.xerial</driver-ref>
+      <driver-ref>a18e8930-e5fc-4f9e-a328-574b8924b117</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:D:\drf course\drf-course-api\Starter Code\db.sqlite3</jdbc-url>
